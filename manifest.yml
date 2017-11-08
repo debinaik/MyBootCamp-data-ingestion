@@ -1,0 +1,30 @@
+---
+applications:
+  - name: dpnaik-locomotive-dataingestion-service
+    memory: 512M
+    buildpack: java_buildpack
+    path: target/data-ingestion-0.0.1-SNAPSHOT.jar #make sure jar name matches artifactID and version
+    services:
+      - locomotive-asset
+      - locomotive-timeseries
+      - locomotive-uaa  
+env:
+    SPRING_PROFILES_ACTIVE : clouddev
+    #predix_asset_name: asha-locomotive-asset
+    predix_asset_name: locomotive-asset
+    #predix_timeseries_name: asha-locomotive-timeseries 
+    predix_timeseries_name: locomotive-timeseries   
+    #predix_oauthRestHost: 2e93f1db-9f2c-43e9-9fa9-7ba816c8f01c.predix-uaa-training.run.aws-usw02-pr.ice.predix.io
+    predix_oauthRestHost: 19295f08-c6be-42f2-8353-84e32670822b.predix-uaa.run.aws-usw02-pr.ice.predix.io   
+    #predix_oauthClientId: asha-client:clientsecret
+    predix_oauthClientId: app_client_id:app_client_id
+    #trustedIssuerIdsRegexPattern: ^https://(.*\\.)?2e93f1db-9f2c-43e9-9fa9-7ba816c8f01c.predix-uaa-training.run.aws-usw02-pr.ice.predix.io/oauth/token$
+    trustedIssuerIdsRegexPattern: ^https://(.*\\.)?19295f08-c6be-42f2-8353-84e32670822b.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token$
+    #accessTokenEndpointUrl : https://2e93f1db-9f2c-43e9-9fa9-7ba816c8f01c.predix-uaa-training.run.aws-usw02-pr.ice.predix.io/oauth/token 
+    accessTokenEndpointUrl : https://19295f08-c6be-42f2-8353-84e32670822b.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token    
+    #clientId : asha-client
+    clientId : app_client_id
+    #clientSecret: clientsecret
+    clientSecret: app_client_id
+    #predixWebSocketURI: wss://websocket-server-new-release.run.aws-usw02-pr.ice.predix.io/livestream/messages
+    
